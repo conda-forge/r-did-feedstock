@@ -146,5 +146,5 @@ Feedstock Maintainers
 =====================
 
 * [@JNuss71](https://github.com/JNuss71/)
-* [@conda-forge/r](https://github.com/conda-forge/r/)
+* [@conda-forge/r](https://github.com/orgs/conda-forge/teams/r/)
 
