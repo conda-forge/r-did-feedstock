@@ -1,4 +1,4 @@
-{% set version = '2.1.2' %}
+{% set version = "2.3.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,14 +9,18 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/did_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/did/did_{{ version }}.tar.gz
-  sha256: 32394e0919dbfcd9c1bc2c8b13c23936f6f0ba38be545f5c7df5096bc4a8241f
+  sha256: 92bc0af15230bff17e75507845718b0ce6d3249085eeceef598b499565b9e8a3
 
 build:
-  number: 2
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -25,21 +29,25 @@ requirements:
   host:
     - r-base
     - r-bmisc >=1.4.4
-    - r-drdid
+    - r-drdid >=1.1.0
     - r-matrix
+    - r-data.table >=1.15.4
+    - r-dreamerr >=1.4.0
+    - r-fastglm
     - r-generics
     - r-ggplot2
-    - r-ggpubr
     - r-pbapply
     - r-tidyr
   run:
     - r-base
     - r-bmisc >=1.4.4
-    - r-drdid
+    - r-drdid >=1.1.0
     - r-matrix
+    - r-data.table >=1.15.4
+    - r-dreamerr >=1.4.0
+    - r-fastglm
     - r-generics
     - r-ggplot2
-    - r-ggpubr
     - r-pbapply
     - r-tidyr
 
@@ -52,19 +60,10 @@ about:
   home: https://bcallaway11.github.io/did/
   dev_url: https://github.com/bcallaway11/did/
   license: GPL-2.0-only
-  summary: The standard Difference-in-Differences (DID) setup involves two periods and two groups
-    -- a treated group and untreated group.  Many applications of DID methods involve
-    more than two periods and have individuals that are treated at different points
-    in time.  This package contains tools for computing average treatment effect parameters
-    in Difference in Differences setups with more than two periods and with variation
-    in treatment timing using the methods developed in Callaway and Sant'Anna (2021)
-    <doi:10.1016/j.jeconom.2020.12.001>.  The main parameters are group-time average
-    treatment effects which are the average treatment effect for a particular group
-    at a a particular time.  These can be aggregated into a fewer number of treatment
-    effect parameters, and the package deals with the cases where there is selective
-    treatment timing, dynamic treatment effects, calendar time effects, or combinations
-    of these.  There are also functions for testing the Difference in Differences assumption,
-    and plotting group-time average treatment effects.
+  summary: The standard Difference-in-Differences (DID) setup involves two periods and two groups -- a treated group and untreated group.  Many applications of DID methods involve more than two periods and have individuals that are treated at different points in time.  This package contains tools for computing average treatment
+    effect parameters in Difference in Differences setups with more than two periods and with variation in treatment timing using the methods developed in Callaway and Sant'Anna (2021) <doi:10.1016/j.jeconom.2020.12.001>.  The main parameters are group-time average treatment effects which are the average treatment effect
+    for a particular group at a a particular time.  These can be aggregated into a fewer number of treatment effect parameters, and the package deals with the cases where there is selective treatment timing, dynamic treatment effects, calendar time effects, or combinations of these.  There are also functions for testing
+    the Difference in Differences assumption, and plotting group-time average treatment effects.
   license_family: GPL2
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
