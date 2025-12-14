@@ -17,6 +17,10 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
@@ -25,21 +29,25 @@ requirements:
   host:
     - r-base
     - r-bmisc >=1.4.4
-    - r-drdid
+    - r-drdid >=1.1.0
     - r-matrix
+    - r-data.table >=1.15.4
+    - r-dreamerr >=1.4.0
+    - r-fastglm
     - r-generics
     - r-ggplot2
-    - r-ggpubr
     - r-pbapply
     - r-tidyr
   run:
     - r-base
     - r-bmisc >=1.4.4
-    - r-drdid
+    - r-drdid >=1.1.0
     - r-matrix
+    - r-data.table >=1.15.4
+    - r-dreamerr >=1.4.0
+    - r-fastglm
     - r-generics
     - r-ggplot2
-    - r-ggpubr
     - r-pbapply
     - r-tidyr
 
